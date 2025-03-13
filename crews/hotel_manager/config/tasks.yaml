@@ -1,0 +1,54 @@
+summerizer_task:
+  description: >
+    Analyze and understand the provided {transcript} thoroughly. 
+    Generate a clear and concise summary that captures all essential details, 
+    including key sentiments and information. For example, if the transcript contains 
+    customer reviews such as "The food is good but the service time is slow,
+    " ensure that both the positive feedback ("good") and the negative aspect ("service time is slow") are clearly reflected.
+    
+    Note: Dont use the example as transcript use provided {transcript}
+  expected_output: >
+    A succinct summary of the {transcript} that accurately conveys all critical 
+    details and sentiments without omitting any important information.
+  agent: summerizer
+
+sentiment_task:
+  description: >
+    Analyze and interpret the sentiment of the summary provided by the summerizer agent. 
+    Carefully evaluate the customer's tone and emotional nuances within the summary. 
+    For example, if the summary includes feedback like "The food is good but service time is slow,"
+    determine the intensity of each sentiment component.
+  expected_output: >
+    A detailed sentiment analysis report that quantifies the sentiment breakdown, 
+    for instance: Positive: 80, Negative: 20, Neutral: 35.
+  agent: sentiment_analyzer
+
+extraction_task:
+  description: >
+    Analyze and understand the provided summary from the summerizer agent. 
+    Carefully extract the key terms and phrases that capture the main ideas and sentiments within the text. 
+    
+    Example: Summary:  "The food is good but the service time is slow and used species are good," 
+    identify and extract keywords along with their associated sentiments (e.g., service: bad, species: good).
+    
+    Note: dont use the example as input use the data from the summerizer agent to extract keywords.
+  expected_output: >
+    A concise list of keywords with their corresponding sentiments or attributes, 
+    accurately reflecting the main points of the summary.
+  agent: keyword_extractor
+
+reporter_task:
+  description: >
+    Analyze and understand the output provided by the sentiment_analyzer agent and 
+    keyword_extraction agent. Generate a comprehensive report aimed at helping hotel management 
+    identify and address areas for improvement in their hotel. Incorporate visualizations 
+    or charts where applicable to enhance clarity and impact.
+  expected_output: >
+    A detailed, actionable report that combines insights from sentiment analysis and 
+    keyword extraction, complete with visual elements such as charts or tables to 
+    effectively communicate recommendations.
+  agent: reporter
+
+
+
+
